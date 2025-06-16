@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow p-4">
+                <h2 class="mb-4 text-center text-primary">
+                    {{ product.name|default:"Add New Product" }}
+                </h2>
+
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+
+                    <div class="d-grid gap-2 mt-4">
+                        <button type="submit" class="btn btn-success">
+                            💾 Save Product
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

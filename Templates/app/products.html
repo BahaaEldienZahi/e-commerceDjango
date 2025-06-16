@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container bg-light shadow-lg p-5 form-layout">
+    <h1 class="text-center text-primary mb-4">Product Details</h1>
+    <p class="text-center mb-5">Click on a Product name to view its details.</p>
+
+    {% if products %}
+        <div class="row">
+            {% for product in products %}
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        {% if product.img %}
+                            <img src="{{ product.img.url }}" class="card-img-top" alt="{{ product.name }}" style="height: 200px; object-fit: cover;">
+                        {% endif %}
+                        <div class="card-body text-center">
+                            <h5 class="card-title">{{ product.name }}</h5>
+                            <p class="card-text">{{ product.details }}</p>
+                            <p class="text-success fw-bold">Price: {{ product.price }}</p>
+                            <a href="{% url 'product_detail' product.id %}" class="btn btn-primary mt-2">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="text-center text-muted">No products available.</p>
+    {% endif %}
+</div>
+{% endblock %}
