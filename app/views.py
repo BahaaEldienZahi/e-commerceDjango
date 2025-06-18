@@ -11,8 +11,13 @@ def home(request):
 
 
 def products(request):
-    all_products = Product.objects.all()
-    return render(request, 'app/products.html', {'products': all_products})
+    query = request.GET.get('q')  
+    if query:
+        all_products = Product.objects.filter(name__contains=query)
+    else:
+        all_products = Product.objects.all()
+    return render(request, 'app/products.html', {'products': all_products, 'query': query})
+
 
 def about(request):
     return render(request, 'app/about.html')

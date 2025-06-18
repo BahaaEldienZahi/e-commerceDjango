@@ -4,6 +4,15 @@
 <div class="container py-5">
   <h1 class="text-center text-primary mb-5">Product Catalog</h1>
 
+  <form method="get" action="{% url 'products' %}" class="row justify-content-center mb-4">
+    <div class="col-md-6 col-sm-8">
+      <div class="input-group">
+        <input type="text" name="q" placeholder="Search product by name..." value="{{ query }}" class="form-control">
+        <button type="submit" class="btn btn-primary">Search</button>
+      </div>
+    </div>
+  </form>
+
   {% if products %}
   <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
     {% for product in products %}
