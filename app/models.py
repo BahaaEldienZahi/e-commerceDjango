@@ -41,10 +41,11 @@ class Login(models.Model):
 class user(models.Model):
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
+    username = models.CharField(max_length=150, unique=True)
     password = models.CharField(max_length=128)
     email = models.EmailField(unique=True)
+    img = models.ImageField(upload_to='users/', blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
-    username = models.CharField(max_length=150, unique=True)
     
     def __str__(self):
         return self.username            
